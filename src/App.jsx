@@ -52,7 +52,7 @@ function App() {
   return (
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
-        <Router basename="/gentouch">
+        <Router basename="/">
           <AuthenticatedApp />
         </Router>
         <Toaster />

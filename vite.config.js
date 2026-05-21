@@ -5,7 +5,7 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/gentouch/',
+  base: process.env.NODE_ENV === 'production' ? '/gentouch/' : '/',
   logLevel: 'error', // Suppress warnings, only show errors
   plugins: [
     base44({
