@@ -60,7 +60,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.7 }}
           className="flex flex-wrap justify-center gap-3 mb-10"
         >
-          {['עיסוי רפואי', 'עיסוי ספורטאים', 'טיפולי ספא', 'עיסוי שוודי קלאסי', 'טיפול עד הבית | חדרה-נתניה'].map((tag) => (
+          {['עיסוי שוודי קלאסי', 'עיסוי רפואי', 'טיפולי ספא', 'עיסוי ספורטאים', 'טיפול עד הבית'].map((tag) => (
             <span
               key={tag}
               className="font-heebo text-xs md:text-sm text-[#cf82bf] border border-[#cf82bf]/40 rounded-full px-4 py-1.5"
