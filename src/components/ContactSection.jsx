@@ -6,6 +6,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 
+const CONTACT_EMAIL = 'davidlevy6786@gmail.com';
+
 export default function ContactSection() {
   const [form, setForm] = useState({ name: '', phone: '', message: '' });
   const [sending, setSending] = useState(false);
@@ -17,11 +19,34 @@ export default function ContactSection() {
       return;
     }
     setSending(true);
-    // Simulate sending
-    await new Promise((r) => setTimeout(r, 1000));
-    toast.success('ההודעה נשלחה בהצלחה! נחזור אליך בהקדם');
-    setForm({ name: '', phone: '', message: '' });
-    setSending(false);
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          _subject: 'הודעה חדשה מטופס יצירת קשר באתר',
+          _template: 'table',
+          name: form.name,
+          phone: form.phone,
+          message: form.message || 'לא הוזנה הודעה',
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Contact form submission failed');
+      }
+
+      toast.success('ההודעה נשלחה בהצלחה! נחזור אליך בהקדם');
+      setForm({ name: '', phone: '', message: '' });
+    } catch (error) {
+      console.error(error);
+      toast.error('לא הצלחנו לשלוח את ההודעה. נסו שוב או צרו קשר טלפונית');
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
