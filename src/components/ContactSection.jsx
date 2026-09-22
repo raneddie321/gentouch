@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Mail, MapPin, Send, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin, MessageCircle, Send } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 
 const CONTACT_EMAIL = 'davidlevy6786@gmail.com';
+const CONTACT_PHONE = '0542209884';
+const WHATSAPP_PHONE = '972542209884';
 
 export default function ContactSection() {
   const [form, setForm] = useState({ name: '', phone: '', message: '' });
@@ -136,25 +138,34 @@ export default function ContactSection() {
             className="md:col-span-2 space-y-6"
           >
             <div className="p-6 rounded-2xl bg-card border border-border/50 space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="font-heebo text-sm font-medium text-foreground mb-1">טלפון</p>
-                  <p className="font-heebo text-muted-foreground text-sm">ליצירת קשר מלאו את הטופס</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="font-heebo text-sm font-medium text-foreground mb-1">שעות פעילות</p>
-                  <p className="font-heebo text-muted-foreground text-sm">ראשון - חמישי: 09:00 - 20:00</p>
-                  <p className="font-heebo text-muted-foreground text-sm">שישי: 09:00 - 14:00</p>
-                </div>
+              <div className="grid gap-3">
+                <Button
+                  asChild
+                  className="font-heebo justify-center gap-2 rounded-full bg-primary text-primary-foreground hover:opacity-90"
+                >
+                  <a href={`mailto:${CONTACT_EMAIL}`}>
+                    <Mail className="w-4 h-4" />
+                    שליחת מייל
+                  </a>
+                </Button>
+                <Button
+                  asChild
+                  className="font-heebo justify-center gap-2 rounded-full bg-primary text-primary-foreground hover:opacity-90"
+                >
+                  <a href={`tel:${CONTACT_PHONE}`}>
+                    <Phone className="w-4 h-4" />
+                    התקשרו עכשיו
+                  </a>
+                </Button>
+                <Button
+                  asChild
+                  className="font-heebo justify-center gap-2 rounded-full bg-primary text-primary-foreground hover:opacity-90"
+                >
+                  <a href={`https://wa.me/${WHATSAPP_PHONE}`} target="_blank" rel="noreferrer">
+                    <MessageCircle className="w-4 h-4" />
+                    שליחת וואטסאפ
+                  </a>
+                </Button>
               </div>
 
               <div className="flex items-start gap-4">
